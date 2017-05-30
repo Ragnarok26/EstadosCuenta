@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Grupo HI-TEC</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/jquery-toast")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery-toast")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="z-index: 99;">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">
+                    Estados de Cuenta (Usuario: @((string)ViewBag.UserName))
+                </a>
+                @*@Html.ActionLink("Clientes SAP (Usuario: " + ((string)ViewBag.UserName) + ")", "Index", "Home", null, new { @class = "navbar-brand" })*@
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <button class="btn btn-sm btn-default" style="margin-top: 10px; margin-bottom: 2px;" onclick="window.open('@Url.Action("Ayuda", "Home")');">
+                        <span class="glyphicon glyphicon-question-sign"></span> Ayuda
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        @Html.Partial("Modal")
+    </div>
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Grupo HI-TEC</p>
+    </footer>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

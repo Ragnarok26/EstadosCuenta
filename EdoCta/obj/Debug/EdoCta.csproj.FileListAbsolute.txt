@@ -1,0 +1,5 @@
+C:\Users\cmontes\Documents\Visual Studio 2013\Projects\EstadosCuenta\EdoCta\bin\Debug\EdoCta.dll
+C:\Users\cmontes\Documents\Visual Studio 2013\Projects\EstadosCuenta\EdoCta\bin\Debug\EdoCta.pdb
+C:\Users\cmontes\Documents\Visual Studio 2013\Projects\EstadosCuenta\EdoCta\obj\Debug\EdoCta.dll
+C:\Users\cmontes\Documents\Visual Studio 2013\Projects\EstadosCuenta\EdoCta\obj\Debug\EdoCta.pdb
+C:\Users\cmontes\Documents\Visual Studio 2013\Projects\EstadosCuenta\EdoCta\obj\Debug\EdoCta.csprojResolveAssemblyReference.cache

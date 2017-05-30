@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+    Layout = "~/Views/Shared/_LayoutInicial.cshtml";
+    string pW = string.Empty;
+    string pH = string.Empty;
+    string pHG = string.Empty;
+    string padding = string.Empty;
+    string Empresa = (string)ViewBag.Empresa;
+}
+
+@if (Empresa.Contains("CNC"))
+{
+    pW = "180px";
+    pH = "180px";
+    pHG = "230px";
+    padding = "3.5%";
+}
+else
+{
+    pW = "200px";
+    pH = "100px";
+    pHG = "150px";
+    padding = "1.7%";
+}
+
+<div class="jumbotron" style="padding-top: 1%; padding-bottom: 2%; height: @pHG">
+    <div style="float: left;">
+        <img src="@Url.Content("~/Content/images/" + Empresa + ".png")" width="@pW" height="@pH" />
+    </div>
+    <div style="float: left; width: 50%; padding-top: @padding;">
+        <form id="uploader" class="form-inline">
+            <input type="hidden" id="txtEmpresa" value="@Empresa" />
+            <div class="col-md-4" style="width: 60%;">
+                <label id="fileInputLbl" class="btn btn-default btn-block" style="float: left;">Selecciona un Archivo...<input id="fileInput" type="file" style="display: none;" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                </label>
+            </div>
+            @*<input id="fileInput" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Archivo..." type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />*@
+            <input type="submit" class="btn btn-primary" value="Cargar Datos" style="float: left;" />
+            &nbsp;&nbsp;&nbsp;
+            <input type="reset" id="clsForm" class="btn btn-warning" value="Limpiar" style="float: left;" />
+        </form>
+    </div>
+    <div style="float: left; width: 50%; margin-left: 1%;">
+        <button class="btn btn-sm btn-default" style="margin-top: 10px; margin-bottom: 2px;" onclick="window.open('@Url.Action("ArchivoEjemplo", "Home")');">
+            <span class="glyphicon glyphicon-download"></span> Descargar archivo de ejemplo
+        </button>
+    </div>
+</div>
+<div class="row" id="filters-container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Filtros</div>
+        <div class="panel-body">
+            <div class="col-md-4">
+                <div class="input-daterange input-group" id="datepicker">
+                    <span class="input-group-addon">Rango de fechas</span>
+                    <span class="input-group-addon">De:</span>
+                    @Html.TextBox("txtInicio", DateTime.Today, "{0:dd/MM/yyyy}", new { @class = "input-sm form-control" })
+                    <span class="input-group-addon">A:</span>
+                    @Html.TextBox("txtFin", DateTime.Today, "{0:dd/MM/yyyy}", new { @class = "input-sm form-control" })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <input type="button" id="btnFiltro" value="Filtrar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="divLoad"></div>
+
+<script type="text/javascript">
+    var url_Upload = "@Url.Action("Upload", "Home")";
+    var url_Load = "@Url.Action("Load", "Home")";
+    var url_Operacion = "@Url.Action("Procesar", "Home")";
+</script>
+<script type="text/javascript" src="~/Scripts/js/Index.js"></script>
+<script type="text/javascript" src="~/Scripts/js/Principal.js"></script>

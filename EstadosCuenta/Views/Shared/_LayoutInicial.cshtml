@@ -1,0 +1,63 @@
+﻿@{
+    List<string> Empresa = (List<string>)ViewBag.Empresas;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Grupo HI-TEC</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/jquery-toast")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery-toast")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="z-index: 99;">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*<a href="#" class="navbar-brand">
+                        Clientes SAP (Usuario: @((string)ViewBag.UserName))
+                    </a>*@
+                @Html.ActionLink("Estados de Cuenta (Usuario: " + ((string)ViewBag.UserName) + ")", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @for (int x = 0; x < Empresa.Count; x++)
+                    {
+                        <li>
+                            <a href="javascript:Cargando('@Url.Action("Inicio", "Home", new { empresa = Empresa[x] })')">@Empresa[x]</a>
+                        </li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <button class="btn btn-sm btn-default" style="margin-top: 10px; margin-bottom: 2px;" onclick="window.open('@Url.Action("Ayuda", "Home")');">
+                            <span class="glyphicon glyphicon-question-sign"></span> Ayuda
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="body-content">
+        @RenderBody()
+        @Html.Partial("Modal")
+    </div>
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Grupo HI-TEC</p>
+    </footer>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

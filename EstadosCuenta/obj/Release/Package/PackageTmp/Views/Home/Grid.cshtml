@@ -1,0 +1,62 @@
+﻿@model IEnumerable<EdoCta.Common.Cliente>
+
+<div class="table-responsive">
+    @*<table class="table-bordered table-hover table-responsive">*@
+    <table class="table table-condensed table-striped table-sm">
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.CardCode)</th>
+            <th>@Html.DisplayNameFor(m => m.CardName)</th>
+            <th>@Html.DisplayNameFor(m => m.Email)</th>
+            <th>@Html.DisplayNameFor(m => m.Status)</th>
+            <th>@Html.DisplayNameFor(m => m.Date)</th>
+            <th>@Html.DisplayNameFor(m => m.Update)</th>
+            <th>@Html.DisplayNameFor(m => m.Processed)</th>
+            <th>@Html.DisplayNameFor(m => m.Usuario)</th>
+            <th>@Html.DisplayNameFor(m => m.Territory)</th>
+            <th>&nbsp;</th>
+        </tr>
+        @if (Model != null)
+        {
+            foreach (EdoCta.Common.Cliente cliente in Model)
+            {
+                <tr>
+                    <td>@cliente.CardCode @Html.Hidden("IC_" + cliente.Id.ToString(), cliente.CardCode)</td>
+                    <td>@cliente.CardName</td>
+                    <td>
+                        @*@Html.TextArea("C_" + cliente.CardCode, cliente.Email, new { @cols = 50, @rows = 3 })*@
+                        @if (!cliente.Processed)
+                        {
+                            @Html.TextArea("C_" + cliente.Id.ToString(), cliente.Email, new { @cols = 50, @rows = 3 })
+                        }
+                        else
+                        {
+                            @Html.TextArea("C_" + cliente.Id.ToString(), cliente.Email, new { @cols = 50, @rows = 3, @readonly = true })
+                        }
+                    </td>
+                    <td>@(cliente.Status ? "Sí" : "No")</td>
+                    <td>@cliente.Date.ToString("dd/MM/yyyy hh:mm:ss tt")</td>
+                    <td>@cliente.Update.ToString("dd/MM/yyyy hh:mm:ss tt")</td>
+                    <td>@(cliente.Processed ? "Procesado" : "No Procesado")</td>
+                    <td>@(!string.IsNullOrEmpty(cliente.Usuario) ? cliente.Usuario : "Sin Asignar")</td>
+                    <td>@(!string.IsNullOrEmpty(cliente.Territory) ? cliente.Territory : "Sin Asignar")</td>
+                    <td>
+                        @if (!cliente.Processed)
+                        {
+                            <input type="button" class="procesar btn-success" id="C_@cliente.Id.ToString()" value="Procesar" />
+                        }
+                        @*else
+                        {
+                            <input type="button" class="desactivar btn-warning" id="C_@cliente.CardCode" value="Reprocesar" />
+                        }*@
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="10">No hay datos para mostrar</td>
+            </tr>
+        }
+    </table>
+</div>

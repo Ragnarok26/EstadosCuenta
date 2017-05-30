@@ -1,0 +1,4 @@
+C:\Users\cmontes\Documents\Visual Studio 2013\Projects\EstadosCuenta\EdoCta\bin\Release\EdoCta.dll
+C:\Users\cmontes\Documents\Visual Studio 2013\Projects\EstadosCuenta\EdoCta\bin\Release\EdoCta.pdb
+C:\Users\cmontes\Documents\Visual Studio 2013\Projects\EstadosCuenta\EdoCta\obj\Release\EdoCta.dll
+C:\Users\cmontes\Documents\Visual Studio 2013\Projects\EstadosCuenta\EdoCta\obj\Release\EdoCta.pdb
